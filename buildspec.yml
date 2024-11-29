@@ -12,17 +12,21 @@ phases:
     commands:
       # Create a deployment package (ZIP file) for Lambda
       - echo "Zipping Lambda function code..."
-      - cd testing-code-pipeline && zip -r ../function.zip . && cd ..
+      - cd index-photos && zip -r ../index-photos.zip . && cd ..
+      - cd search-photos && zip -r ../search-photos.zip . && cd ..
       # Push the ZIP file to S3
       - echo "Uploading Lambda code to S3..."
-      - aws s3 cp function.zip s3://cloud-hws3-lambda-for-codepipeline/
+      - aws s3 cp index-photos.zip s3://cloud-hws3-lambda-for-codepipeline/
+      - aws s3 cp search-photos.zip s3://cloud-hws3-lambda-for-codepipeline/
   post_build:
     commands:
       # Update the Lambda function using the S3 object
       - echo "Updating Lambda function with new code from S3..."
-      - aws lambda update-function-code --function-name testing-code-pipeline --s3-bucket cloud-hws3-lambda-for-codepipeline --s3-key function.zip
+      - aws lambda update-function-code --function-name index-photos --s3-bucket cloud-hws3-lambda-for-codepipeline --s3-key index-photos.zip
+      - aws lambda update-function-code --function-name search-photos --s3-bucket cloud-hws3-lambda-for-codepipeline --s3-key search-photos.zip
       - echo "Lambda function updated successfully!"
 
 artifacts:
   files:
-    - function.zip  # Optionally save the ZIP file as a build artifact
+    - index-photos.zip  # save the ZIP file as a build artifact
+    - search-photos.zip
