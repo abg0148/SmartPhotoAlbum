@@ -12,7 +12,7 @@ phases:
     commands:
       # Create a deployment package (ZIP file) for Lambda
       - echo "Zipping Lambda function code..."
-      - zip -r function.zip testing-code-pipeline/*
+      - cd testing-code-pipeline && zip -r ../function.zip . && cd ..
       # Push the ZIP file to S3
       - echo "Uploading Lambda code to S3..."
       - aws s3 cp function.zip s3://cloud-hws3-lambda-for-codepipeline/
