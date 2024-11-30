@@ -4,7 +4,7 @@ from opensearchpy import OpenSearch, RequestsHttpConnection
 from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 
 def lambda_handler(event, context):
-    print("EVENT")
+    print("EVENT - DEMO PIPELINE")
     print(event)
     
     client = boto3.client('lexv2-runtime', region_name='us-east-1')
