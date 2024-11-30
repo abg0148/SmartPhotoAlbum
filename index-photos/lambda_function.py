@@ -4,7 +4,7 @@ from opensearchpy import OpenSearch, RequestsHttpConnection
 from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 
 def lambda_handler(event, context):
-    print("Pipeline Test")
+    print("Pipeline Test   -  DEMO PIPELINE")
     # Auth & Get Services 
     host = 'search-photos-rstk2zrqrg6i3b2rgkhxmympzq.aos.us-east-1.on.aws'
     region = 'us-east-1'
